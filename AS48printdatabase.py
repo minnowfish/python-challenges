@@ -69,8 +69,8 @@ def print_one_row():
     with conn:
         PrintCar=input("Car ID:")
         cur = conn.execute("SELECT id, Name, TopSpeed FROM Cars WHERE id = ?", (PrintCar,))
-        if cur.fetchone():
-            row = cur.fetchone()
+        row = cur.fetchone()
+        if row:
             print ("ID:",row[0],"\nName:",row[1],"\nTop Speed:",row[2],"mph")
         else:
             print("Please select an ID between 1 to 50")
