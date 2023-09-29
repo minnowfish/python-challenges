@@ -1,19 +1,18 @@
-#UNFINISHED
-#Exercise 1: Instead of throwing dice, get it to come up with a random name picker! 
-
 import tkinter 
 import random
 
 window = tkinter.Tk()
 
-def RandomNumber():
-     MyRandom = random.randint(1,6)
-     dice_thrown.configure(text="Dice thrown: " + str(MyRandom))
+
+def RandomName():
+     names = ["Ashlyn","Owen","Shermaine","David","Harry","Howie"]
+     MyName = random.choice(names)
+     dice_thrown.configure(text="Name Selected: " + MyName)
      
-MyTitle = tkinter.Label(window, text="Random Number Generator",font="Helvetica 16 bold")
+MyTitle = tkinter.Label(window, text="Random Name Generator",font="Helvetica 16 bold")
 MyTitle.pack()
 
-MyButton = tkinter.Button(window, text="OK", command=RandomNumber)
+MyButton = tkinter.Button(window, text="OK", command=RandomName)
 MyButton.pack()
 
 dice_thrown = tkinter.Label(window, font="Helvetica 16 bold")
