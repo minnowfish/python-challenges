@@ -1,5 +1,3 @@
-#UNFINISHED
-
 import tkinter
  
 window = tkinter.Tk()
@@ -9,8 +7,8 @@ Base_Number=""
 def evaluate(event):
     if Base_Number == "Celsius":
         try:
-            cel = int(Myentry.get(),2)
-            myfah = round((cel*1.8)+32,1)
+            cel = int(Myentry.get())
+            myfah = round((cel*1.8)+32,2)
             mykel = cel + 273.15
             result1.configure(text = "Fahrenheit is: "+str(myfah))
             result2.configure(text = "Kelvin is: "+str(mykel))
@@ -20,21 +18,22 @@ def evaluate(event):
  
     elif Base_Number == "Fahrenheit":
         try:
-            dec = int(Myentry.get())
-            mybin = bin(dec)
-            myhex = hex(dec)
-            result1.configure(text = "Binary is: "+str(mybin))
-            result2.configure(text = "Hex is: "+str(myhex))
+            fah = int(Myentry.get())
+            mycel = round(((fah-32)*1.8),2)
+            mykel = mycel + 273.15
+            result1.configure(text = "Celsius is: "+str(mycel))
+            result2.configure(text = "Fahrenheit is: "+str(mykel))
         except ValueError:
             result1.configure(text = "Please enter valid decimal")
             result2.configure(text = "")
  
     elif Base_Number == "Kelvin":
         try:
-            dec =int(Myentry.get(),16)
-            mybin = bin(dec)
-            result1.configure(text = "Decimal is: "+str(dec))
-            result2.configure(text = "Binary is: "+str(mybin))
+            kel =int(Myentry.get())
+            mycel = round(kel - 273.15,2)
+            myfah = round(((mycel * 1.8)+32),2)
+            result1.configure(text = "Celsius is: "+str(mycel))
+            result2.configure(text = "Fahreinheit is: "+str(myfah))
         except ValueError:
             result1.configure(text = "Please enter valid hexadecimal")
             result2.configure(text = "")
@@ -65,3 +64,4 @@ tkinter.Radiobutton(window, text="Fahrenheit", variable=base, value="Fahrenheit"
 tkinter.Radiobutton(window, text="Kelvin", variable=base, value="Kelvin", command=calcStyle).pack()
  
 window.mainloop()
+
