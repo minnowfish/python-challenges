@@ -9,7 +9,7 @@ class LinkedList:
         self.size = 0
 
     def outputList(self):
-        current = self.head
+        current = None
         for i in range(self.size):
             print(current.data)
             current = current.next
