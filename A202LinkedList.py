@@ -1,3 +1,4 @@
+#Object orientated linked list
 class Node:
     def __init__(self, data):
         self.data = data
@@ -88,3 +89,73 @@ while True:
             break
         case _:
             print("Invalid choice, please try again.")
+
+
+#Array based linked list
+def insert(letter):
+   global startPointer
+   global freePointer
+
+   if freePointer == -1:
+       print("Not enough space")
+
+   else:
+       next_free = alphabetList[freePointer][1]
+       current = startPointer
+
+       while letter > alphabetList[current][0] and current != -1:
+           prev = current
+           current = alphabetList[current][1]
+
+       if current == startPointer:
+           alphabetList[freePointer] = [letter, current]
+           startPointer = freePointer
+       else:
+           alphabetList[freePointer] = [letter, alphabetList[prev][1]]
+           alphabetList[prev][1] = freePointer
+
+       freePointer = next_free
+
+def delete(letter) -> bool:
+   global startPointer
+   global freePointer
+
+   if startPointer == -1:
+       print("The list is empty")
+       return False
+
+   current = startPointer
+   while letter > alphabetList[current][0] and current != -1:
+       prev = current
+       current = alphabetList[current][1]
+
+   if letter == alphabetList[current][0]:
+       if current == startPointer:
+           alphabetList[current][1]
+       else:
+           alphabetList[prev][1] = alphabetList[current][1]
+       alphabetList[current][0] = ""
+       alphabetList[current][1] = freePointer
+       freePointer = current
+       return True
+   return False
+
+alphabetList = [['e', 4], ['', 5], ['c', 0], ['b', 2], ['f', -1], ['', 6], ['', 7], ['', 8], ['', 9], ['', -1]] #array 10, 10 element char, int
+startPointer = 3 #integer
+freePointer = 1 #integer
+
+for i in range(5):
+   letter = input("Input letter: ")
+   choice = input("Insert or Delete? ")
+
+   if choice.title() == "Insert":
+       insert(letter)
+   elif choice.title() == "Delete":
+       if not delete(letter):
+           print("Letter not in list")
+
+current = startPointer
+while current != -1:
+   print(alphabetList[current][0], end=" ")
+   current = alphabetList[current][1]
+
